@@ -47,19 +47,18 @@ func handleCache(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if prefix != "" {
+	/*if prefix != "" {
 		if !strings.HasPrefix(filename, prefix) {
 			http.Error(w, "invalid path", http.StatusBadRequest)
 			stats.errors++
 			return
 		}
 		filename = strings.TrimPrefix(filename, prefix)
-	}
+	}*/
 
 	// Check for invalid characters
 	if strings.Contains(filename, "..") ||
-		strings.Contains(filename, "~") ||
-		strings.Contains(filename, "/") {
+		strings.Contains(filename, "~") {
 		http.Error(w, "invalid path", http.StatusBadRequest)
 		stats.errors++
 		return
